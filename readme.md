@@ -1,7 +1,7 @@
 Voici des projets de datavizualisation, cela consiste à récupérer des données et de les retranscrire sous forme d'un graphique quel que soit le type.
 Dans ces deux projets je récupère des fichiers CSV que je manipule en javascript pour récupérer les données qui m'intéressent puis je les affiche en faisant appel à la librairie Chart.js.
 
-h1 Le premier projet: 
+Le premier projet: 
 J'ai récupérer un fichier CSV sur le site de la NASA qui présente la moyenne annuelle de la témpérature mondiale. J'ai extrait les températures et les années correspondantes et j'ai utilisé Chart.js pour afficher un graphique à ligne.
 
 Le deuxième projet: 
