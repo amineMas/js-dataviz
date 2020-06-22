@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch sur objectif zero pesticide</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+</head>
+<body>
+
+    <canvas id="myChart"></canvas>
+    
+<script>
+
+    graphIt();
+
+
+async function graphIt() {
+    const data = await fetchData();
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+        
+        // The data for our dataset
+        data: {
+            labels: data.ville,
+            datasets: [{
+                label: 'Objectif Zéro déchet par commune',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: data.traitement,
+                fill: false,
+            }]
+        },
+        
+        // Configuration options go here
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 1,
+                    }
+                }]
+            }
+        }
+    });
+}
+
+
+    async function fetchData() {
+        const response = await fetch('extraitPesticide.csv');
+        const data = await response.text();
+        const ville = [];
+        const traitement = [];
+        const table = data.split('\n').slice(1);
+        for (rows of table) {
+            const cols = rows.split(';').slice(0,5);
+            ville.push(cols[2]);
+            traitement.push(cols[3]);
+        }
+        return {ville, traitement}
+    }
+</script>
+</body>
+</html>
